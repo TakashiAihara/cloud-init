@@ -1,0 +1,14 @@
+#cloud-config
+timezone: Asia/Tokyo
+locale: ja_JP.utf8
+package_upgrade: true
+packages:
+  - tmux
+  - squid
+runcmd:
+  - wget https://raw.githubusercontent.com/TakashiAihara/squid/master/squid.conf -O /etc/squid/squid.conf && systemctl enable squid && systemctl restart squid
+power_state:
+  delay: "+10"
+  mode: reboot
+  message: Bye Bye
+  timeout: 30

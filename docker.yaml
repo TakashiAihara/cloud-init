@@ -1,0 +1,12 @@
+#cloud-config
+timezone: Asia/Tokyo
+locale: ja_JP.utf8
+package_upgrade: true
+packages:
+  - tmux
+  - curl -sSL https://get.docker.com/ | CHANNEL=stable sh
+power_state:
+  delay: "+10"
+  mode: reboot
+  message: Bye Bye
+  timeout: 30
