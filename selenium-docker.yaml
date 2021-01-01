@@ -1,0 +1,23 @@
+#cloud-config
+timezone: Asia/Tokyo
+locale: ja_JP.utf8
+package_update: true
+package_upgrade: true
+users:
+  - name: root
+    ssh-import-id:
+    - gh:TakashiAihara
+packages:
+  - tmux
+  - python3
+  - python3-pip
+  - python3-venv
+runcmd:
+  - curl -fsSL https://get.docker.com -o - | CHANNEL=stable sh && docker run -d --restart=always --name=selenium -p 4444:4444 -p 5900:5900 -v /dev/shm:/dev/shm selenium/standalone-chrome
+  - pip3 install docker-compose
+power_state:
+  delay: "+10"
+  mode: reboot
+  message: Bye Bye
+  timeout: 30
+
